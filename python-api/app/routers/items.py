@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 
+from ..utils import data_collector
 from ..dependencies import get_token_header
 
 router = APIRouter(
@@ -10,19 +11,19 @@ router = APIRouter(
 )
 
 
-fake_items_db = {"plumbus": {"name": "Plumbus"}, "gun": {"name": "Portal Gun"}}
+data = data_collector.read_json("ds_salaries.csv", "data.json")
 
 
 @router.get("/")
 async def read_items():
-    return fake_items_db
+    return data
 
 
 @router.get("/{item_id}")
 async def read_item(item_id: str):
-    if item_id not in fake_items_db:
+    if item_id not in data:
         raise HTTPException(status_code=404, detail="Item not found")
-    return {"name": fake_items_db[item_id]["name"], "item_id": item_id}
+    return {"name": data[item_id]["name"], "item_id": item_id}
 
 
 @router.put(
