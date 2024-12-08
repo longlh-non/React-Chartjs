@@ -4,7 +4,7 @@ import os
 from .utils import get_path
 
 # File paths
-csv_file = 'ds_salaries.csv'  # Replace with your CSV file path
+csv_file = 'ex_offender_rehabilitation_dataset.csv'  # Replace with your CSV file path
 json_file = 'data.json'  # Replace with your desired JSON output file path
 
 
