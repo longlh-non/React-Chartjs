@@ -2,15 +2,13 @@ import { baseAPI } from "./baseAPI";
 
 export const dataAPI = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
-    getUsers: builder.query({
-      query: () => "/data", // Endpoint for fetching users
-      providesTags: ["Data"], // Optional: Cache invalidation
+    fetchData: builder.query({
+      query: () => ({url: "/data", params: {token: "tnl" }}) // Endpoint for fetching data
+      // providesTags: ["Data"], // Optional: Cache invalidation
     })
   }),
 });
 
 export const {
-  useGetDataQuery
+  useFetchDataQuery 
 } = dataAPI;
-
-export default dataAPI;

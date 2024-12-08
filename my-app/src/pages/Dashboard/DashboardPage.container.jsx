@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import DashboardPage from "./DashboardPage";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchData } from "../../store/data/actions";
+import { selectData, selectLoading, selectError } from "../../store/data/selectors";
 
 const DashboardContainer = () => {
   // State for the uploaded file

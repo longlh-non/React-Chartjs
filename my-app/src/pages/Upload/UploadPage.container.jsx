@@ -1,9 +1,18 @@
 import React, { useState } from "react";
 import UploadPage from "./UploadPage";
 import { usePageContext } from "../../PageContext";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchData } from "../../store/data/actions";
+import { selectData, selectLoading, selectError } from "../../store/data/selectors";
 
 const UploadContainer = () => {
   const { currentPage, setCurrentPage } = usePageContext();
+
+  // Store
+  const dispatch = useDispatch();
+  const data = useSelector(selectData);
+  const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
 
   // State for the uploaded file
   const [file, setFile] = useState(null);
@@ -27,11 +36,19 @@ const UploadContainer = () => {
 
   // Handle submit button click
   const handleSubmit = () => {
+    
     if (file && selectedMetrics.length > 0) {
       console.log("File:", file.name);
       console.log("Selected Metrics:", selectedMetrics);
-      setCurrentPage('dashboard')
-      alert("Submission successful!");
+      dispatch(fetchData());
+
+      if (error && !loading){
+        alert("Upload fail!");
+      } else {
+        // setCurrentPage('dashboard')
+        alert("Upload successful!");
+      }
+
     } else {
       alert("Please upload a file and select at least one metric.");
     }

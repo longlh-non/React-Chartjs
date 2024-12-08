@@ -1,14 +1,25 @@
-import { setLoading, setData, setError } from "./slice";
-import api from "../../api/baseAPI"; // Hypothetical API utility
+// src/store/data/actions.js
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { dataAPI } from "../../api/dataAPI"
 
-export const fetchData = () => async (dispatch) => {
-  dispatch(setLoading(true));
-  try {
-    const response = await api.get("/data"); // Replace with your endpoint
-    dispatch(setData(response.data));
-  } catch (error) {
-    dispatch(setError(error.message));
-  } finally {
-    dispatch(setLoading(false));
+// Create an async action (Thunk) to fetch data
+export const fetchData = createAsyncThunk(
+  'data/fetchData', // Action type
+  async (_, { dispatch, rejectWithValue }) => {
+    try {
+
+      console.log(dataAPI);
+
+      const response = dispatch(dataAPI.endpoints.fetchData.initiate());
+
+      if (response.error) {
+        throw new Error(response.error.message);
+      }
+
+      return response.data; // Return the data
+    } catch (error) {
+      console.error("Fetching data: ", error) // Handle errors
+      throw error
+    }
   }
-};
+);

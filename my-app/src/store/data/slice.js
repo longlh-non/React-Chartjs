@@ -1,4 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+// src/store/data/slice.js
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchData } from './actions'; // Import the async action
 
 const initialState = {
   data: [],
@@ -7,20 +9,23 @@ const initialState = {
 };
 
 const dataSlice = createSlice({
-  name: "data",
+  name: 'data',
   initialState,
-  reducers: {
-    setLoading(state, action) {
-      state.loading = action.payload;
-    },
-    setData(state, action) {
-      state.data = action.payload;
-    },
-    setError(state, action) {
-      state.error = action.payload;
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchData.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchData.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.payload;
+      })
+      .addCase(fetchData.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
   },
 });
 
-export const { setLoading, setData, setError } = dataSlice.actions;
 export default dataSlice.reducer;

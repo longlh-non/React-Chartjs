@@ -2,7 +2,7 @@ from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .dependencies import get_query_token, get_token_header
 from .internal import admin
-from .routers import items, users
+from .routers import items, users, data
 
 
 app = FastAPI(dependencies=[Depends(get_query_token)])
@@ -12,6 +12,7 @@ origins = [
     "https://localhost.tiangolo.com",
     "http://localhost",
     "http://localhost:8080",
+    "http://localhost:3000"
 ]
 
 app.add_middleware(
@@ -25,6 +26,7 @@ app.add_middleware(
 
 app.include_router(users.router)
 app.include_router(items.router)
+app.include_router(data.router)
 app.include_router(
     admin.router,
     prefix="/admin",
