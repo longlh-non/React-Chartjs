@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DashboardPage from "./DashboardPage";
+
 import { useSelector, useDispatch } from "react-redux";
 import { fetchData } from "../../store/data/actions";
 import { selectData, selectLoading, selectError } from "../../store/data/selectors";
@@ -12,7 +13,7 @@ const DashboardContainer = () => {
   const [selectedMetrics, setSelectedMetrics] = useState([]);
 
   // Available metrics options
-  const metricsOptions = [{ID: "access", label: "Accuracy"}, {ID: "prec", label: "Precision"}, {ID: "rec", label: "Recall"}, {ID: "f1", label: "F1 Score"}];
+  const metricsOptions = [{ID: "acc", label: "Accuracy"}, {ID: "prec", label: "Precision"}, {ID: "rec", label: "Recall"}, {ID: "f1", label: "F1 Score"}];
 
   // Handle file selection
   const handleFileChange = (event) => {

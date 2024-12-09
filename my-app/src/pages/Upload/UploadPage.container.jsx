@@ -45,7 +45,7 @@ const UploadContainer = () => {
       if (error && !loading){
         alert("Upload fail!");
       } else {
-        // setCurrentPage('dashboard')
+        setCurrentPage('dashboard')
         alert("Upload successful!");
       }
 
