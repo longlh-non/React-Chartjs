@@ -1,12 +1,6 @@
-import React from "react";
-import { Box, Button, Chip, Stack, Typography } from "@mui/joy";
-
-import Select from '@mui/joy/Select';
-import Option from '@mui/joy/Option';
-
-import AcquisitionsChart from "../../components/charts/AcquisitionsChart";
-import DimensionsChart from "../../components/charts/DimensionsChart";
+import { Box } from "@mui/joy";
 import ReoffendedChartContainer from "../../components/charts/Reoffended/ReoffendedChart.container"
+import EducationEmploymentContainer from "../../components/charts/EducationSkillsEmploymentRate/EducationSkillsEmploymentRate.container"
 
 const DashboardPage = ({
   selectedMetrics
@@ -15,7 +9,12 @@ const DashboardPage = ({
 
   return (
     <Box>
-      <ReoffendedChartContainer />
+      {selectedMetrics.includes("reoffended") && (
+        <ReoffendedChartContainer />
+      )}
+      {selectedMetrics.includes("education") && (
+        <EducationEmploymentContainer />
+      )}
     </Box>
   );
 };

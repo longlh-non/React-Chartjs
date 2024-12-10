@@ -1,11 +1,9 @@
-// RecidivismContainer.jsx
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ReoffendedChart from "./ReoffendedChart";
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const ReoffendedChartContainer = () => {
   const [chartData, setChartData] = useState(null);
-  const dispatch = useDispatch();
   const { data, loading, error } = useSelector((state) => state.data);
 
   useEffect(() => {

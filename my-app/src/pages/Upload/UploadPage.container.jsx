@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import UploadPage from "./UploadPage";
 import { usePageContext } from "../../PageContext";
 import { useSelector, useDispatch } from "react-redux";
@@ -17,11 +17,8 @@ const UploadContainer = () => {
   // State for the uploaded file
   const [file, setFile] = useState(null);
 
-  // State for selected metrics
-  // const [selectedMetrics, setSelectedMetrics] = useState([]);
-
   // Available metrics options
-  const metricsOptions = [{ID: "reoffended", label: "Reoffended"}, {ID: "prec", label: "Precision"}, {ID: "rec", label: "Recall"}, {ID: "f1", label: "F1 Score"}];
+  const metricsOptions = [{ID: "reoffended", label: "Reoffended"}, {ID: "education", label: "Education"}, {ID: "rec", label: "Recall"}, {ID: "f1", label: "F1 Score"}];
 
   // Handle file selection
   const handleFileChange = (event) => {
@@ -39,7 +36,6 @@ const UploadContainer = () => {
     
     if (file && selectedMetrics.length > 0) {
       console.log("File:", file.name);
-      console.log("Selected Metrics:", selectedMetrics);
       dispatch(fetchData());
 
       if (error && !loading){
@@ -61,7 +57,7 @@ const UploadContainer = () => {
       selectedMetrics={selectedMetrics}
       onFileChange={handleFileChange}
       onMetricSelection={handleMetricSelection}
-      onSubmit={handleSubmit}
+      handleSubmit={handleSubmit}
     />
   );
 };

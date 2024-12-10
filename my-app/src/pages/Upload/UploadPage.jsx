@@ -1,5 +1,4 @@
-import React from "react";
-import { Box, Button, Chip, Stack, Typography } from "@mui/joy";
+import { Box, Button, Chip, Typography } from "@mui/joy";
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 
@@ -9,16 +8,9 @@ const UploadPage = ({
   selectedMetrics,
   onFileChange,
   onMetricSelection,
-  onSubmit,
+  handleSubmit,
 }) => {
   const handleMetricsSelect = (event, newMetric) => {
-    // Update the selected metrics directly
-    // debugger
-    // const updatedMetrics = selectedMetrics.includes(metric)
-    //   ? selectedMetrics.filter((m) => m !== metric)
-    //   : [...selectedMetrics, metric];
-    // setSelectedMetrics(event.target.value);
-
     console.log("Selected Metrics:", newMetric); // Logs the selected values
     onMetricSelection(newMetric); // Pass the updated metrics
   };
@@ -27,11 +19,7 @@ const UploadPage = ({
     <form
     onSubmit={(event) => {
       event.preventDefault();
-      // const formData = new FormData(event.currentTarget);
-      // const formJson = Object.fromEntries(formData.entries());
-      // const selectedPets = JSON.parse(formJson.pets);
-      onSubmit()
-      // alert(JSON.stringify(selectedPets));
+      handleSubmit()
     }}
     >
       <Box sx={{ p: 4, maxWidth: 600, margin: "0 auto" }}>

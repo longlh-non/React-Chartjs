@@ -105,8 +105,10 @@ def generate_random_data(num_rows):
                                                     "none"])
     
         education_level = random_choice(["no_formal_qualification", "gcses", "a_levels", "vocational_ualification", "undergraduate_degree", "postgraduate_degree"])
-
-        skills_certifications = random_choice(["welding_certification", 
+        skill_count = random.randint(0, 5)
+        skills_certifications = []
+        for i in range(skill_count):
+            skills_certification = random_choice(["welding_certification", 
                                                 "data_entry",
                                                 "carpentry_skills",
                                                 "communication_skills",
@@ -123,12 +125,14 @@ def generate_random_data(num_rows):
                                                 "first_aid_certification",
                                                 "health_and_safety_training",
                                                 "coding_basics",
-                                                "driving_license_commercial",
-                                                "none"])
+                                                "driving_license_commercial"])
+            
+            if skills_certification not in skills_certifications:
+                skills_certifications.append(skills_certification)
         
-        if support_program_enrolled == "none" and skills_certifications == "none":
+        if support_program_enrolled == "none" and len(skills_certifications) == 0:
             employment_status = random_choice(["unemployed", "part_time_employment"])
-        elif len(skills_certifications) > 1:
+        elif len(skills_certifications) > 4:
             employment_status = random_choice(["employed", "part_time_employment", "self_employed"])
         else:
             employment_status = random_choice(["employed", "unemployed", "part_time_employment", "self_employed"])
@@ -166,6 +170,6 @@ dataset = generate_random_data(num_rows)
 df = pd.DataFrame(dataset)
 
 # Save to CSV
-file_path = "./data/ex_offender_rehabilitation_dataset.csv"
+file_path = "./ex_offender_rehabilitation_dataset.csv"
 df.to_csv(file_path, index=False)
 file_path
