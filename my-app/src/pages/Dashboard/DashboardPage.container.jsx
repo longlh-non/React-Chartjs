@@ -1,49 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DashboardPage from "./DashboardPage";
 
 import { useSelector, useDispatch } from "react-redux";
 import { fetchData } from "../../store/data/actions";
 import { selectData, selectLoading, selectError } from "../../store/data/selectors";
 
+import { usePageContext } from "../../PageContext";
+
+
 const DashboardContainer = () => {
-  // State for the uploaded file
-  const [file, setFile] = useState(null);
+  const { currentPage, setCurrentPage, selectedMetrics, setSelectedMetrics } = usePageContext();
+  // const [refinedMetrics, setRefineMetrics] = useState(selectedMetrics)
 
-  // State for selected metrics
-  const [selectedMetrics, setSelectedMetrics] = useState([]);
+  // useEffect(() => {
+    
+  //   refine = selectedMetrics.map((metric) => {
+  //     if (!metric) return ""; // Handle empty or undefined strings
+  //     return metric.charAt(0).toUpperCase() + str.slice(1);
+  //   })
 
-  // Available metrics options
-  const metricsOptions = [{ID: "acc", label: "Accuracy"}, {ID: "prec", label: "Precision"}, {ID: "rec", label: "Recall"}, {ID: "f1", label: "F1 Score"}];
+  //   setRefineMetrics(refine)
 
-  // Handle file selection
-  const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
-  };
+  // }, [selectedMetrics])
 
-  // Handle metric selection
-  const handleMetricSelection = (event, newMetrics) => {
-    setSelectedMetrics(newMetrics);
-  };
-
-  // Handle submit button click
-  const handleSubmit = () => {
-    if (file && selectedMetrics.length > 0) {
-      console.log("File:", file.name);
-      console.log("Selected Metrics:", selectedMetrics);
-      alert("Submission successful!");
-    } else {
-      alert("Please upload a file and select at least one metric.");
-    }
-  };
 
   return (
     <DashboardPage
-      file={file}
-      metricsOptions={metricsOptions}
       selectedMetrics={selectedMetrics}
-      onFileChange={handleFileChange}
-      onMetricSelection={handleMetricSelection}
-      onSubmit={handleSubmit}
     />
   );
 };

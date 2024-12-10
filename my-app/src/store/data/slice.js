@@ -19,11 +19,13 @@ const dataSlice = createSlice({
       })
       .addCase(fetchData.fulfilled, (state, action) => {
         state.loading = false;
+        console.log(action.payload);
+        
         state.data = action.payload;
       })
       .addCase(fetchData.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload.isError;
       });
   },
 });

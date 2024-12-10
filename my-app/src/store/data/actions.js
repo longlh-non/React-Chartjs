@@ -1,6 +1,7 @@
 // src/store/data/actions.js
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { dataAPI } from "../../api/dataAPI"
+// import {}
 
 // Create an async action (Thunk) to fetch data
 export const fetchData = createAsyncThunk(
@@ -10,8 +11,8 @@ export const fetchData = createAsyncThunk(
 
       console.log(dataAPI);
 
-      const response = dispatch(dataAPI.endpoints.fetchData.initiate());
-
+      const response = await dispatch(dataAPI.endpoints.fetchData.initiate());
+      
       if (response.error) {
         throw new Error(response.error.message);
       }

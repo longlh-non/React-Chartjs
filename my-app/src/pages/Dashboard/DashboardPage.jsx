@@ -6,21 +6,16 @@ import Option from '@mui/joy/Option';
 
 import AcquisitionsChart from "../../components/charts/AcquisitionsChart";
 import DimensionsChart from "../../components/charts/DimensionsChart";
+import ReoffendedChartContainer from "../../components/charts/Reoffended/ReoffendedChart.container"
 
 const DashboardPage = ({
-  file,
-  metricsOptions,
-  selectedMetrics,
-  onFileChange,
-  onMetricSelection,
-  onSubmit,
+  selectedMetrics
 }) => {
 
 
   return (
     <Box>
-      <AcquisitionsChart />
-      <DimensionsChart />
+      <ReoffendedChartContainer />
     </Box>
   );
 };

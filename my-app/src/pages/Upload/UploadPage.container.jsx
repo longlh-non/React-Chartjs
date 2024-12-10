@@ -6,7 +6,7 @@ import { fetchData } from "../../store/data/actions";
 import { selectData, selectLoading, selectError } from "../../store/data/selectors";
 
 const UploadContainer = () => {
-  const { currentPage, setCurrentPage } = usePageContext();
+  const { currentPage, setCurrentPage, selectedMetrics, setSelectedMetrics } = usePageContext();
 
   // Store
   const dispatch = useDispatch();
@@ -18,10 +18,10 @@ const UploadContainer = () => {
   const [file, setFile] = useState(null);
 
   // State for selected metrics
-  const [selectedMetrics, setSelectedMetrics] = useState([]);
+  // const [selectedMetrics, setSelectedMetrics] = useState([]);
 
   // Available metrics options
-  const metricsOptions = [{ID: "access", label: "Accuracy"}, {ID: "prec", label: "Precision"}, {ID: "rec", label: "Recall"}, {ID: "f1", label: "F1 Score"}];
+  const metricsOptions = [{ID: "reoffended", label: "Reoffended"}, {ID: "prec", label: "Precision"}, {ID: "rec", label: "Recall"}, {ID: "f1", label: "F1 Score"}];
 
   // Handle file selection
   const handleFileChange = (event) => {

@@ -91,7 +91,7 @@ const UploadPage = ({
             variant="solid"
             size="lg"
             sx={{ marginTop: '1.5rem' }}
-            disabled={!file || selectedMetrics.length === 0}
+            disabled={!file || selectedMetrics?.length === 0}
             type="submit"
           >
             Submit
