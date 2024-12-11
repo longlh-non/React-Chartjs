@@ -19,8 +19,7 @@ import Stack from '@mui/joy/Stack';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
-import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
-import AssignmentRoundedIcon from '@mui/icons-material/AssignmentRounded';
+import CalculateIcon from '@mui/icons-material/Calculate';import AssignmentRoundedIcon from '@mui/icons-material/AssignmentRounded';
 import QuestionAnswerRoundedIcon from '@mui/icons-material/QuestionAnswerRounded';
 import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
 import SupportRoundedIcon from '@mui/icons-material/SupportRounded';
@@ -32,6 +31,8 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 import ColorSchemeToggle from './ColorSchemeToggle';
 import { closeSidebar } from '../utils';
+
+// import { usePageContext } from "../../PageContext";
 
 function Toggler({
   defaultExpanded = false,
@@ -66,6 +67,12 @@ function Toggler({
     </React.Fragment>
   );
 }
+
+// export const SidebarContainer = () {
+//   const { currentPage, setCurrentPage, selectedMetrics, setSelectedMetrics } = usePageContext();
+
+//   return 
+// }
 
 export default function Sidebar() {
   return (
@@ -149,8 +156,12 @@ export default function Sidebar() {
           }}
         >
           <ListItem>
-            <ListItemButton>
-              <HomeRoundedIcon />
+            <ListItemButton
+              role="menuitem"
+              component="a"
+              href="/dashboard"
+            >
+              <DashboardRoundedIcon />
               <ListItemContent>
                 <Typography level="title-sm">Dashboard</Typography>
               </ListItemContent>
@@ -158,8 +169,12 @@ export default function Sidebar() {
           </ListItem>
 
           <ListItem>
-            <ListItemButton>
-              <DashboardRoundedIcon />
+            <ListItemButton               
+              role="menuitem"
+              component="a" 
+              href="/calculation-tool"
+            >
+              <CalculateIcon />
               <ListItemContent>
                 <Typography level="title-sm">Calculation Tool</Typography>
               </ListItemContent>

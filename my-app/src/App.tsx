@@ -8,6 +8,8 @@ import Breadcrumbs from '@mui/joy/Breadcrumbs';
 import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
 import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
@@ -15,7 +17,8 @@ import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
 import logo from './logo.svg';
 import './App.css';
 import TabsVertical from './components/TabsVertical'
-import MainPage from "./MainPage";
+import CalculatePage from "./pages/CalculatePage/CalculatePage";
+import DashboardPageContainer from "./pages/DashboardPage/DashboardPage.container";
 import { PageProvider } from "./PageContext";
 
 import Header from "./components/Header"
@@ -25,37 +28,42 @@ function App() {
   return (
     <CssVarsProvider disableTransitionOnChange>
       <CssBaseline />
-        <div className="App">
-        <PageProvider>
-          <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
-            <Header />
-            <Sidebar />
-            <Box
-              component="main"
-              className="MainContent"
-              sx={{
-                px: { xs: 2, md: 6 },
-                pt: {
-                  xs: 'calc(12px + var(--Header-height))',
-                  sm: 'calc(12px + var(--Header-height))',
-                  md: 3,
-                },
-                pb: { xs: 2, sm: 2, md: 3 },
-                flex: 1,
-                display: 'flex',
-                flexDirection: 'column',
-                minWidth: 0,
-                height: '100dvh',
-                gap: 1,
-              }}
-            >
-              <MainPage />
-            </Box>
+      <PageProvider>
+        <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
+          <Header />
+          <Sidebar />
+          <Box
+            component="main"
+            className="MainContent"
+            sx={{
+              px: { xs: 2, md: 6 },
+              pt: {
+                xs: 'calc(12px + var(--Header-height))',
+                sm: 'calc(12px + var(--Header-height))',
+                md: 3,
+              },
+              pb: { xs: 2, sm: 2, md: 3 },
+              flex: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              minWidth: 0,
+              height: '100dvh',
+              gap: 1,
+            }}
+          >
+            <Router>
+              <Routes>
+                <Route path="/" element={<DashboardPageContainer />}></Route>
+                <Route path="/dashboard" element={<DashboardPageContainer />}></Route>
+                <Route path="calculation-tool" element={<CalculatePage />}></Route>
+              </Routes>
+            </Router>
           </Box>
-          
-        </PageProvider>
-      </div>
+        </Box>        
+      </PageProvider>
+
     </CssVarsProvider>
+
 
   );
 }

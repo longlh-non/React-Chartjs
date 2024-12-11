@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import DashboardPage from "./DashboardPage";
+import ChartsPage from "./ChartsPage";
 
-import { usePageContext } from "../../PageContext";
+import { usePageContext } from "../../../PageContext";
 
 
-const DashboardContainer = () => {
+const ChartsPageContainer = () => {
   const { currentPage, setCurrentPage, selectedMetrics, setSelectedMetrics } = usePageContext();
 
   useEffect(() => {
@@ -15,10 +15,10 @@ const DashboardContainer = () => {
 
 
   return (
-    <DashboardPage
+    <ChartsPage
       selectedMetrics={selectedMetrics}
     />
   );
 };
 
-export default DashboardContainer;
+export default ChartsPageContainer;

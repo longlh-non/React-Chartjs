@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { Box, Button, Stack, Typography } from "@mui/joy";
-import UploadPage from "./pages/Upload/UploadPage.container"
-import DashboardPage from "./pages/Dashboard/DashboardPage.container"
-import { usePageContext } from "./PageContext";
+import UploadPage from "./Upload/UploadPage.container"
+import DashboardPage from "./ChartsPage/ChartsPage.container"
+import { usePageContext } from "../../PageContext";
 
-const MainPage = () => {
+const CalculatePage = () => {
   const { currentPage, setCurrentPage } = usePageContext();
-//   const [currentPage, setCurrentPage] = useState("upload");
   const [file, setFile] = useState(null);
-  const [selectedMetrics, setSelectedMetrics] = useState([]);
 
   // Navigation handler
   const navigateTo = (page) => {
@@ -16,31 +14,33 @@ const MainPage = () => {
   };
 
   return (
-    <Box sx={{ p: 4, maxWidth: 800, margin: "0 auto" }}>
+      <Box sx={{ p: 4, maxWidth: 800, margin: "0 auto" }}>
       <Typography level="h3" sx={{ mb: 3 }}>
-        Dynamic Page 
+        Calculation Tool Prototype
       </Typography>
 
       {/* Navigation Buttons */}
       <Stack direction="row" gap={2} sx={{ mb: 4 }}>
         <Button
           variant="solid"
-          disabled={currentPage !== "upload"}
+          onClick={() => navigateTo("upload")}
+          // disabled={currentPage !== "upload"}
         >
           File Upload
         </Button>
         <Button
           variant="solid"
-          disabled={currentPage !== "dashboard"}
+          onClick={() => navigateTo("dashboard")}
+          // disabled={currentPage !== "dashboard"}
         >
           Dashboard
         </Button>
-        <Button
+        {/* <Button
           variant="solid"
-          disabled={currentPage !== "results"}
+          // disabled={currentPage !== "results"}
         >
           Results
-        </Button>
+        </Button> */}
       </Stack>
 
       {/* Dynamic Page Rendering */}
@@ -63,4 +63,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default CalculatePage;
